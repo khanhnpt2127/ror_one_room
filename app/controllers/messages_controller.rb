@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.ip = request.remote_ip
-    
+    ActionCable.server.broadcast 'messages', message: render_message(@message)
     @message.save!
     head :ok
   end
@@ -22,6 +22,6 @@ class MessagesController < ApplicationController
   end
   
   def render_message(message)
-    "<a href=\"#\" class=\"list-group-item\">\n  <h4 class=\"list-group-item-heading\">message.ip </h4>\n  <p class=\"list-group-item-text\">message.content </p>\n</a>"
+    "<a href=\"#\" class=\"list-group-item\">\n  <h4 class=\"list-group-item-heading\">#{message.ip} </h4>\n  <p class=\"list-group-item-text\">#{message.content} </p>\n</a>"
   end
 end

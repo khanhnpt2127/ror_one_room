@@ -1,6 +1,7 @@
 <h1>List of messages</h1>
-<%= render @messages  %>
-
+<div class="messages">
+  
+</div>
 <%= form_for @message, remote: true do |f|  %>
   <%= f.text_field :content, required:true %>
   <%= f.submit %>
