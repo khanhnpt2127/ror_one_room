@@ -1,0 +1,6 @@
+<%= render @messages  %>
+
+<%= form_for @message do |f|  %>
+  <%= f.text_field :content, required:true %>
+  <%= f.submit %>
+<% end  %>
